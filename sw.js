@@ -1,10 +1,10 @@
-const CACHE_NAME = 'unit-price-app-v4';
+const CACHE_NAME = 'unit-price-app-v5';
 const ASSETS_TO_CACHE = [
-    './',
-    './index.html',
-    './style.css',
-    './main.js',
-    './manifest.json'
+    '/price-checker/',
+    '/price-checker/index.html',
+    '/price-checker/style.css',
+    '/price-checker/main.js',
+    '/price-checker/manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
@@ -45,7 +45,7 @@ self.addEventListener('fetch', (event) => {
             .catch(() => {
                 // If network fails and it's navigation, return index.html
                 if (event.request.mode === 'navigate') {
-                    return caches.match('./index.html');
+                    return caches.match('/price-checker/index.html');
                 }
             })
     );
