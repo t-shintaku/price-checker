@@ -34,7 +34,9 @@
 body {
   background-color: var(--bg-color);
   color: var(--text-main);
+  /* ブラウザのメニューバーを考慮した高さ（非対応ブラウザ用に100vhを残す） */
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -218,7 +220,8 @@ h1 {
   padding: 6px;
   background-color: var(--surface-color);
   border-top: 1px solid var(--border-color);
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
+  /* ブラウザのメニューバー分の余白を広め（32px）に確保 */
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 32px);
 }
 
 .numpad {
