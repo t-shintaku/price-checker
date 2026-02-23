@@ -66,7 +66,13 @@ function handleKeyPress(key) {
     let currentVal = state[product][field];
 
     if (key === 'AC') {
-        state[product][field] = '';
+        // Clear all fields
+        state.a.price = '';
+        state.a.amount = '';
+        state.b.price = '';
+        state.b.amount = '';
+        // Reset focus to the very first field
+        state.activeField = { product: 'a', field: 'price' };
     } else if (key === 'BS') {
         state[product][field] = currentVal.slice(0, -1);
     } else if (key === 'NEXT') {
