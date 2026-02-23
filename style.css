@@ -117,19 +117,18 @@ h1 {
 
 /* Main Cards Area */
 .comparison-container {
-  flex: 1;
+  /* Flexboxで縮小可能にし、キーパッドにスペースを譲る */
+  flex: 0 1 auto;
   display: flex;
   flex-direction: row;
-  /* Align side by side */
   padding: 8px 12px;
   gap: 8px;
-  overflow: hidden;
-  /* No scroll needed anymore */
+  overflow-y: auto;
+  /* 万が一はみ出た場合はスクロールさせる */
 }
 
 .product-card {
   flex: 1;
-  /* Take up half width */
   display: flex;
   flex-direction: column;
   background-color: var(--surface-color);
@@ -148,7 +147,6 @@ h1 {
 .card-header {
   display: flex;
   flex-direction: column;
-  /* Stack title and unit price */
   align-items: flex-start;
   margin-bottom: 8px;
   padding-bottom: 4px;
@@ -163,7 +161,6 @@ h1 {
 
 .product-card.winner .product-label::after {
   content: ' 👑';
-  /* Shorter text for space */
   color: var(--primary-color);
   font-size: 14px;
 }
@@ -177,7 +174,6 @@ h1 {
 .input-group {
   display: flex;
   flex-direction: column;
-  /* Labels above displays */
   align-items: stretch;
   margin-bottom: 8px;
   gap: 2px;
@@ -213,33 +209,45 @@ h1 {
 
 /* Custom Keypad */
 .keypad-container {
+  /* 画面の下半分以上を強制的に占有させる */
+  flex: 1 0 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* 下寄せ */
   padding: 6px;
   background-color: var(--surface-color);
   border-top: 1px solid var(--border-color);
-  /* Added extra padding for the bottom safe area on mobile devices */
   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
 }
 
 .numpad {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
+  gap: 6px;
+  /* 隙間を広めに */
+  height: 100%;
+  /* コンテナの高さいっぱいに広げる */
 }
 
 .numpad button {
   background-color: var(--key-bg);
   color: var(--text-main);
   border: none;
-  border-radius: 6px;
-  padding: 8px 0;
-  /* Slightly smaller keypad padding to ensure fit */
-  font-size: 18px;
+  border-radius: 8px;
+  /* 縦幅を最大限広げるためにpaddingを消してflexで中央揃えに頼る */
+  padding: 0;
+  font-size: 22px;
+  /* 文字を少し大きく */
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.1s;
-  /* Add min-height to prevent buttons from becoming too short or tall */
-  min-height: 48px;
-  max-height: 56px;
+  /* min-height, max-height の制限を解除して画面比率に追従させる */
+  min-height: unset;
+  max-height: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .numpad button:active {
@@ -249,7 +257,7 @@ h1 {
 
 .numpad button.action-key {
   background-color: var(--key-action);
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-main);
   font-weight: 500;
   display: flex;
