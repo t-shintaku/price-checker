@@ -213,16 +213,17 @@ h1 {
 
 /* Custom Keypad */
 .keypad-container {
-  padding: 8px;
+  padding: 6px;
   background-color: var(--surface-color);
   border-top: 1px solid var(--border-color);
-  padding-bottom: env(safe-area-inset-bottom, 8px);
+  /* Added extra padding for the bottom safe area on mobile devices */
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
 }
 
 .numpad {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  gap: 4px;
 }
 
 .numpad button {
@@ -230,12 +231,15 @@ h1 {
   color: var(--text-main);
   border: none;
   border-radius: 6px;
-  padding: 10px 0;
+  padding: 8px 0;
   /* Slightly smaller keypad padding to ensure fit */
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.1s;
+  /* Add min-height to prevent buttons from becoming too short or tall */
+  min-height: 48px;
+  max-height: 56px;
 }
 
 .numpad button:active {
